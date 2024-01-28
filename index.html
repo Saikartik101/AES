@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Test</title>
+  <style>
+    body {
+      background-color: #A8D0E6; /* Light blue background color */
+      font-family: "Montserrat", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Set a maximum height and enable vertical scrolling for the form container */
+    #form-container {
+      max-height: 80vh;
+      overflow: auto;
+      width: 80%;
+    }
+
+    form {
+      background-color: #fff; /* White background for the form */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      width: 100%; /* Adjust the form width as needed */
+      overflow: auto;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #333; /* Dark gray border for input field */
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+      text-align: center; /* Center text horizontally in the input field */
+    }
+
+    button[type="button"] {
+      padding: 10px 20px;
+      background-color: #333; /* Dark gray button background color */
+      color: #fff; /* White button text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px; /* Add margin to separate buttons */
+    }
+
+    button[type="button"]:hover {
+      background-color: #1a1a1a; /* Darker gray on hover */
+    }
+    h1 {
+            font-size: 36px;
+            color: #333; /* Dark gray title text color */
+        }
+
+    .qa-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .remove-button {
+      background-color: #ff3333; /* Red background color for remove button */
+    }
+
+    /* Style the "Next" button to match the other buttons */
+    #stopRecording {
+      padding: 10px 20px;
+      background-color: #333; /* Dark gray button background color */
+      color: #fff; /* White button text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px; /* Add margin to separate buttons */
+    }
+
+    #stopRecording:hover {
+      background-color: #1a1a1a; /* Darker gray on hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Your Questions</h1>
+  <div id="form-container">
+    <form id="qa-form">
+      <div id="qa-container">
+        <!-- Initial set of input fields -->
+        <div class="qa-row">
+          <input type="text" name="question" placeholder="Question">
+          <input type="text" name="answer" placeholder="Answer">
+          <input type="number" name="percentage" placeholder="Percentage">
+          <button type="button" class="remove-button">Remove Question</button>
+        </div>
+      </div>
+      <button type="button" id="add-button">Add Question</button>
+      <button type="button" id="submit-button">Submit</button>
+      <button onclick="redirectToPage2()" id="stopRecording" disabled>Next</button>
+    </form>
+  </div>
+
+  <script>
+    // Function to add a new set of input fields
+    function redirectToPage2() {
+      console.log("function called!");
+      window.location.href = "/gen";
+    }
+    function addQAFields() {
+      const qaContainer = document.getElementById('qa-container');
+      const qaRow = document.createElement('div');
+      qaRow.classList.add('qa-row');
+      qaRow.innerHTML = `
+        <input type="text" name="question" placeholder="Question">
+        <input type="text" name="answer" placeholder="Answer">
+        <input type="number" name="percentage" placeholder="Percentage">
+        <button type="button" class="remove-button">Remove Question</button>
+      `;
+      qaContainer.appendChild(qaRow);
+    }
+
+    // Function to remove a set of input fields
+    function removeQAFields(event) {
+      const qaRow = event.target.parentElement;
+      const qaContainer = document.getElementById('qa-container');
+      qaContainer.removeChild(qaRow);
+    }
+
+    // Initialize an array to store form submissions
+    const formSubmissions = [];
+
+    // Add event listeners for the add and remove buttons
+    document.getElementById('add-button').addEventListener('click', addQAFields);
+
+    // Use event delegation for remove buttons
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('remove-button')) {
+        removeQAFields(event);
+      }
+    });
+    const stopRecordingButton = document.getElementById('stopRecording');
+    // Add an event listener for the submit button
+    document.getElementById('submit-button').addEventListener('click', function() {
+      // Collect all form submissions
+      stopRecordingButton.disabled = false;
+      const qaRows = document.querySelectorAll('.qa-row');
+      const formDataArray = [];
+
+      qaRows.forEach(qaRow => {
+        const inputs = qaRow.querySelectorAll('input');
+        const formData = {};
+
+        inputs.forEach(input => {
+          formData[input.name] = input.value;
+        });
+
+        formDataArray.push(formData);
+      });
+
+      // Send the form data array as a JSON POST request to the server
+      fetch('/ques', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataArray),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

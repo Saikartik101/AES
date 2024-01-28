@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #A8D0E6; /* Light blue background color */
+            font-family: "Montserrat", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff; /* White background for the container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333; /* Dark gray title text color */
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555; /* Gray text color */
+        }
+
+        .btn-container {
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 20px; /* Default padding for buttons */
+            background-color: #333; /* Dark gray button background color */
+            color: #fff; /* White button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none; /* Remove underlines from the link */
+            margin-right: 10px; /* Add margin to separate buttons */
+        }
+
+        .btn-start {
+            padding: 10px 30px; /* Increased padding for the "Start" button */
+        }
+
+        .btn:hover {
+            background-color: #1a1a1a; /* Darker gray on hover */
+        }
+
+        /* Logout button styles */
+        #logout-button {
+            background-color: #ff3333; /* Red background color for logout button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Instructions</h1>
+        <p>Welcome to the Automated Evaluation Platform.</p>
+        <p>Please follow the instructions carefully and click "Start" when you are ready to begin.</p>
+        <div class="btn-container">
+            <a href="/q1" class="btn btn-start">Start</a>
+            
+            <!-- Logout button -->
+            <a href="/logout" id="logout-button" class="btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

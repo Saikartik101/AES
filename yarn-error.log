@@ -1,0 +1,63 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\saika\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add html-img
+
+PATH: 
+  C:\Program Files\Common Files\Oracle\Java\javapath;C:\Users\saika\Downloads\jdk-19_windows-x64_bin\jdk-19.0.1\bin;C:\app\saika\product\21c\dbhomeXE\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\dotnet\;C:\Program Files\PuTTY\;C:\Program Files\Kubernetes\Minikube;C:\minikube;C:\Program Files\Java\jdk-19\bin;C:\Program Files\apache-maven-3.8.5\bin;C:\Program Files\apache-maven-3.8.5\bin;C:\Program Files\MongoDB\Server\6.0\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Go\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Games\mongosh-1.10.6-win32-x64\mongosh-1.10.6-win32-x64\bin;C:\Program Files\MongoDB\Server\7.0\bin;C:\Users\saika\AppData\Local\Programs\Python\Launcher\;C:\Users\saika\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\saika\AppData\Local\Programs\Python\Python310\;C:\Users\saika\.cargo\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\saika\AppData\Local\Microsoft\WindowsApps;C:\Users\saika\.dotnet\tools;C:\Program Files\JetBrains\PyCharm Community Edition 2021.3.2\bin;C:\Users\saika\AppData\Local\atom\bin;C:\php;C:\Users\saika\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.1.3\bin;;C:\Users\saika\Downloads\gradle-7.5.1-bin\gradle-7.5.1\bin;C:\Program Files\heroku\bin;C:\Users\saika\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Java\jdk-19\bin;C:\Program Files\MongoDB\Server\6.0\bin\;C:\Users\saika\AppData\Local\Microsoft\WindowsApps;C:\Users\saika\go\bin;C:\Users\saika\AppData\Roaming\npm;C:\Games\mongosh-1.10.6-win32-x64\mongosh-1.10.6-win32-x64\bin;C:\Program Files\MongoDB\Server\7.0\bin;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/html-img: Not found
+      at params.callback [as _callback] (C:\Users\saika\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
+      at self.callback (C:\Users\saika\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (C:\Users\saika\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (C:\Users\saika\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+    "name": "hr_interview",
+    "version": "1.0.0",
+    "description": "Auto evalution system",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Balivada Sai Karthik",
+    "license": "ISC",
+    "dependencies": {
+      "bcrypt": "^5.1.1",
+      "body-parser": "^1.20.2",
+      "dotenv": "^16.3.1",
+      "ejs": "^3.1.9",
+      "express": "^4.18.2",
+      "express-session": "^1.17.3",
+      "mongodb": "^6.0.0",
+      "mongoose": "^7.5.1",
+      "multer": "^1.4.5-lts.1",
+      "mysql2": "^3.6.1",
+      "passport": "^0.6.0",
+      "passport-local": "^1.0.0"
+    },
+    "devDependencies": {
+      "nodemon": "^3.0.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

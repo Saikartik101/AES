@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Organisation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #A8D0E6;
+      font-family: "Montserrat", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+    }
+
+    button {
+      padding: 15px 40px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px 0;
+      font-family: "Montserrat", Arial, sans-serif;
+    }
+
+    button:hover {
+      background-color: #1a1a1a;
+    }
+
+    .table-container {
+      max-height: 400px;
+      overflow: auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Style for the logout button */
+    #logout-button {
+      padding: 10px 30px;
+      background-color: #ff3333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+    /* Style for the logout button on hover */
+    #logout-button:hover {
+      background-color: #ff3333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Organisation Dashboard</h1>
+  <button onclick="redirectToPage2()"><strong>Create New Test</strong></button>
+  <!-- Table container div -->
+  <div class="table-container">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Test Name</th>
+          <th>Description</th>
+          <th>Test ID</th>
+          <th>View Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% testData.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.description %></td>
+            <td><%= item.testid %></td>
+            <td><a href="/get/<%= item.testid %>">Link</a></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <!-- Logout button -->
+  <a href="/alogout" id="logout-button">Logout</a>
+  <script>
+    function redirectToPage2() {
+      window.location.href = "/start";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #A8D0E6; /* Light blue background color */
+            font-family: "Montserrat", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333; /* Dark gray title text color */
+        }
+
+        p {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #555; /* Gray text color */
+            font-weight: bold;
+        }
+
+        button {
+            padding: 15px 40px;
+            background-color: #333; /* Dark gray button background color */
+            color: #fff; /* White button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px 0; /* Add vertical margin to separate buttons */
+        }
+
+        button:hover {
+            background-color: #1a1a1a; /* Darker gray on hover */
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #video {
+            width: 320px; /* Adjust video width as needed */
+            height: 240px; /* Adjust video height as needed */
+            border: 5px solid black;
+        }
+    </style>
+        <script>
+          window.onload = function () {
+              // This code will run when the page is fully loaded
+              const text1 = '<%= bal %>';
+              const audioMessage = new SpeechSynthesisUtterance(text1);
+              window.speechSynthesis.speak(audioMessage);
+          };
+      </script>
+  </head>
+</head>
+<body>
+    <h1><%= bal %></h1>
+    
+    <p id="output" class="hide"></p>
+    
+    <video id="video" autoplay></video>
+    
+    <button onclick="runSpeechRecog()">Answer</button>
+    
+    <button id="stopRecording" disabled>Confirm</button>
+
+    <form id="uploadForm" style="display: none;" method="POST" enctype="multipart/form-data">
+        <input type="file" style="display: none;" name="video" accept="video/*">
+        <button id="submitVideo" type="button">Next</button>
+    </form>
+  
+  <script>
+    let status = "";
+
+
+    let isConfirm = false;
+    let datax = [];
+    document.addEventListener("visibilitychange", () => {
+                 
+                 if(document.visibilityState!=="visible"){
+                   datax.push("Cheated");
+                 }
+                
+                
+               });
+    const videoElement = document.getElementById('video');
+    const stopRecordingButton = document.getElementById('stopRecording');
+    
+    const submitVideoButton = document.getElementById('submitVideo');
+
+    const uploadForm = document.getElementById('uploadForm');
+    
+    let mediaRecorder;
+    let recordedChunks = [];
+
+    function redirectToPage2() {
+            window.location.href = "/q1";
+        }
+
+        runSpeechRecog = () => {
+            if(isConfirm){
+              alert("Your answer is already confirmed")
+            }
+            else{
+              document.getElementById("output").innerHTML = "Loading text...";
+            var output = document.getElementById('output');
+            var action = document.getElementById('action');
+            let recognition = new webkitSpeechRecognition();
+
+            recognition.onstart = () => {
+                action.innerHTML = "Listening...";
+            }
+
+
+            recognition.onresult = (e) => {
+              datax.push(e.results[0][0].transcript);
+
+              
+              output.innerHTML = datax.includes("Cheated")?"Sorry you're Disqualified Because Our System Detected Tab Switch":datax[0];
+                output.classList.remove("hide")
+                action.innerHTML = "";
+                sendToExpress(transcript)
+    
+          }
+
+            recognition.start();
+
+
+            }
+            
+        }
+
+        function sendToExpress(text) {
+            // Use fetch or other means to send 'text' to your Express server
+            fetch('/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: text
+                })
+            })
+            .then(response => {
+                // Handle the response from Express if needed
+                console.log(response);
+            })
+            .catch(error => {
+                // Handle errors if any
+                console.error(error);
+            });
+        }
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        videoElement.srcObject = stream;
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = event => {
+          if (event.data.size > 0) {
+            recordedChunks.push(event.data);
+          }
+        };
+
+       
+
+        // Start recording automatically once the stream is available
+        mediaRecorder.start();
+        stopRecordingButton.disabled = false;
+      })
+      .catch(error => {
+        console.error('Error accessing webcam:', error);
+      });
+
+    stopRecordingButton.addEventListener('click', () => {
+        isConfirm = true;
+      mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: 'video/webm' });
+          const videoURL = URL.createObjectURL(blob);
+          videoElement.src = videoURL;
+
+          submitVideoButton.addEventListener('click', async () => {
+            // Stop recording here
+            mediaRecorder.stop();
+            stopRecordingButton.disabled = true;
+
+            const formData = new FormData();
+            formData.append('video', blob, 'recorded-video.webm');
+            formData.append('ans',datax);
+            console.log("datax value:",datax);
+
+            const response = await fetch('/upload1', {
+              method: 'POST',
+              body: formData,
+            });
+
+            if (response.ok) {
+              redirectToPage2();
+            } else {
+                console.log("video error");
+            }
+          });
+        };
+      mediaRecorder.stop();
+      stopRecordingButton.disabled = true;
+    
+      uploadForm.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

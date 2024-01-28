@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #A8D0E6; /* Light blue background color */
+            font-family: "Montserrat", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333; /* Dark gray title text color */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+          font-size: 16px;
+            font-weight: bold; /* Make list items bold */
+            color: #333; /* Dark gray text color */
+            margin: 5px 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 400%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #333; /* Dark gray border for input field */
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #333; /* Dark gray button background color */
+            color: #fff; /* White button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1a1a1a; /* Darker gray on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1><%= bal %></h1>
+    <ul id="data-list"><strong></strong></ul>
+
+    <form action="/sendMessage1" method="POST">
+        <input type="text" name="text" placeholder="Type your message" required>
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+       function fetchData() {
+    const dataList = document.getElementById('data-list');
+
+    function fetchAndDisplayData() {
+        fetch('/test1', {
+            method: 'POST'
+            // Add any other fetch options here if needed
+        })
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+            // Clear existing data list
+            dataList.innerHTML = '';
+
+            data.forEach(item => {
+                const listItem = document.createElement('li');
+                if (item.sender.slice(-4) === "left") {
+                   listItem.textContent = item.text;
+                } else {
+                   listItem.textContent =  "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"+item.text;
+                 }
+                dataList.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    }
+
+    // Fetch data initially
+    fetchAndDisplayData();
+
+    // Set up an interval to fetch data every X milliseconds
+    const fetchDataInterval = setInterval(fetchAndDisplayData, 3000); // Adjust the interval as needed (e.g., every 5 seconds)
+    
+    // Optionally, you can clear the interval when needed (e.g., when the user leaves the page)
+    // clearInterval(fetchDataInterval);
+}
+
+// Start fetching data when the page loads
+fetchData();
+    </script>
+</body>
+</html>

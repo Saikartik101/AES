@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #A8D0E6; /* Light blue background color */
+            font-family: "Montserrat", Arial, sans-serif;
+            text-align: center;
+            color: #333; /* Dark gray text color */
+        }
+
+        h1 {
+            font-family: "Montserrat", Arial, sans-serif;
+            color: #333; /* Dark gray title text color */
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333; /* Dark gray label color */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #333; /* Dark gray border for input field */
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /* Include padding and border in the element's width */
+            text-align: center; /* Center text horizontally in the input field */
+        }
+
+        button[type="submit"] {
+            background-color: #333; /* Dark gray for the submit button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1a1a1a; /* Darker gray on hover */
+        }
+
+        /* Logout button styles */
+        #logout-button {
+            background-color: #ff3333; /* Red background color for logout button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px; /* Add margin to separate buttons */
+            display: block; /* Display the button as a block-level element */
+            margin: 20px auto; /* Center the button horizontally */
+            text-decoration: none; /* Remove underlines from the link */
+            max-width: 5%; /* Limit the maximum width of the button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Your Email</h1>
+    <form action="/forget" method="post">
+        <label for="test-code">Email Address:</label>
+        <input type="text" id="email" name="email" required><br><br>
+
+        <button type="submit">Proceed</button>
+    </form>
+    
+    <!-- Logout button -->
+</body>
+</html>

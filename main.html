@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Automated Test Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #A8D0E6; /* Light blue background color */
+      font-family: "Montserrat", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1, h2, p {
+      text-align: center; /* Center text horizontally */
+      opacity: 0; /* Initially set headings to be invisible */
+      color: white;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: white; /* Dark gray title text color */
+      margin-bottom: 20px; /* Add margin at the bottom of h1 */
+      white-space: nowrap; /* Prevent text from wrapping */
+      overflow: hidden; /* Hide overflowing text */
+      border-right: 2px solid transparent; /* Create a cursor effect */
+      animation: typing 2s steps(40) 1s forwards, blink-caret 0.5s infinite alternate, fadeIn 2s 3s forwards;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: white; /* Dark gray text color */
+      margin-top: 10px; /* Add margin at the top of h2 */
+      white-space: nowrap; /* Prevent text from wrapping */
+      overflow: hidden; /* Hide overflowing text */
+      border-right: 2px solid transparent; /* Create a cursor effect */
+      animation: typing 2s steps(40) 2s forwards, blink-caret 0.5s infinite alternate, fadeIn 2s 3s forwards;
+    }
+
+    p {
+      font-size: 16px;
+      color: white; /* Dark gray text color */
+    }
+
+    /* Style for the buttons container */
+    .button-container {
+      display: flex;
+      justify-content: space-between; /* Space buttons evenly between the two sides */
+      width: 100%;
+      max-width: 400px; /* Adjust the max-width as needed */
+      margin-top: 20px; /* Add margin at the top of button container */
+    }
+
+    /* Style for the left and right button groups */
+    .button-group {
+      width: 48%; /* Equal width for both button groups */
+    }
+
+    /* Add margin between the button groups */
+    .user-button-group {
+      margin-right: 150px;
+    }
+
+    .button-group button {
+      width: 180%; /* Equal width for all buttons in each group */
+      padding: 15px 0; /* Equal padding for all buttons */
+      background-color: #333; /* Dark gray button background color */
+      color: #fff; /* White button text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 10px 0; /* Add vertical margin to separate buttons */
+      display: none; /* Initially hide buttons */
+    }
+
+    /* Style for the buttons on hover */
+    .button-container button:hover {
+      background-color: #1a1a1a; /* Darker gray on hover */
+    }
+ nav {
+      display: flex;
+      top: 100;
+      justify-content: flex-end; /* Align buttons to the right */
+      width: 100%;
+      background-color: transparent; /* Make the navbar background transparent */
+      padding: 10px 0; /* Add padding to space the buttons vertically */
+    }
+
+    /* Style for the navbar buttons */
+    nav a {
+      color: #333; /* Dark gray button text color */
+      text-decoration: none; /* Remove underline from the links */
+      padding: 10px 20px; /* Add padding to the buttons */
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    /* Style for the navbar buttons on hover */
+    nav a:hover {
+      background-color: #1a1a1a; /* Darker gray on hover */
+      color: #fff; /* White text color on hover */
+    }
+     .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Place the video behind other content */
+      overflow: hidden;
+    }
+
+    /* Style for the video element */
+    video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Typing animation keyframes */
+    @keyframes typing {
+      from {
+        width: 0;
+        opacity: 1; /* Make headings visible when typing animation starts */
+      }
+      to {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+
+    /* Blink caret animation keyframes */
+    @keyframes blink-caret {
+      to {
+        border-color: transparent;
+      }
+    }
+
+    /* Fade-in animation keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay loop muted>
+      <source src="dashboard.mp4" type="video/mp4"> <!-- Replace "your-video.mp4" with the path to your video file -->
+      <!-- Add additional source elements for different video formats if needed -->
+    </video>
+  </div>
+  <h1>Welcome To Automated Evaluation System</h1>
+  <h2>Provides Automated Evaluation and Cheat Detection</h2>
+  <div class="button-container">
+    <div class="button-group user-button-group">
+      <button onclick="redirectToPage1()"><strong>User Login</strong></button>
+      <button onclick="redirectToPage2()"><strong>User Sign up</strong></button>
+    </div>
+    <div class="button-group">
+      <button onclick="redirectToPage3()"><strong>Organisation Login</strong></button>
+      <button onclick="redirectToPage4()"><strong>Organisation Sign up</strong></button>
+    </div>
+  </div>
+</body>
+<script>
+  // Function to show buttons after the animation is complete
+  function showButtons() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.style.display = 'block';
+    });
+  }
+
+  function redirectToPage1() {
+    window.location.href = "/ulogin";
+  }
+  function redirectToPage2() {
+    window.location.href = "/usign";
+  }
+  function redirectToPage3() {
+    window.location.href = "/ologin";
+  }
+  function redirectToPage4() {
+    window.location.href = "/osign";
+  }
+
+  // Add an event listener to call showButtons() after the animation
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(showButtons, 3000); // Adjust the delay as needed
+  });
+</script>
+</html>

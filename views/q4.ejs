@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #A8D0E6; /* Light blue background color */
+            font-family: "Montserrat", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333; /* Dark gray title text color */
+            margin-bottom: 20px; /* Add margin at the bottom of h1 */
+        }
+
+        .table-container {
+            max-height: 400px; /* Set the maximum height for the table container */
+            overflow: auto; /* Enable vertical scrolling for overflow */
+            background-color: #fff; /* White background for the table container */
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%; /* Table width set to 100% for responsiveness */
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333; /* Dark gray header background color */
+            color: #fff; /* White header text color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray background for even rows */
+        }
+
+        .logout-button {
+            padding: 15px 40px;
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logout-button:hover {
+            background-color: #1a1a1a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Replace 'YourOrgName' with your organization name -->
+    <h1>Test ID: <%= bal %></h1>
+    <div class="table-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Candidate Name</th>
+                    <th>Marks</th>
+                    <th>Chat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% testData.forEach(item => { %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.marks %></td>
+                    <!-- Generate links with orgName and item.email -->
+                    <td><a href="/chat/<%= item.email %>/<%= orgName %>">Chat now</a></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <a href="/alogout" class="logout-button">Logout</a>
+</body>
+</html>

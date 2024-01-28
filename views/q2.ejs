@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #A8D0E6; /* Light blue background color */
+      font-family: "Montserrat", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1, h2, p {
+      text-align: center; /* Center text horizontally */
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333; /* Dark gray title text color */
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #333; /* Dark gray text color */
+    }
+
+    p {
+      font-size: 16px;
+      color: #333; /* Dark gray text color */
+    }
+
+    #logout-button {
+      padding: 10px 20px;
+      background-color: #ff3333; /* Red button background color */
+      color: #fff; /* White button text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none; /* Remove underlines from the link */
+      margin-top: 20px; /* Add margin to separate the buttons */
+      display: block; /* Ensure the buttons are displayed as block elements */
+      width: fit-content; /* Make the button width adjust to its content */
+    }
+
+    #dashboard-button {
+      padding: 10px 20px;
+      background-color: #000; /* Black button background color */
+      color: #fff; /* White button text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none; /* Remove underlines from the link */
+      margin-top: 10px; /* Add margin to separate the buttons */
+      display: block; /* Ensure the buttons are displayed as block elements */
+      width: fit-content; /* Make the button width adjust to its content */
+    }
+
+    /* Style for the buttons on hover */
+    #logout-button:hover {
+      background-color: #cc0000; /* Darker red on hover */
+    }
+
+    #dashboard-button:hover {
+      background-color: #333; /* Dark gray on hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Test Code:</h1>
+  <h2><%= bal %></h2>
+  <p>Using this code, candidates can access your test.</p>
+  <a href="/dashboard" id="dashboard-button">Continue to Dashboard</a>
+  <a href="/alogout" id="logout-button">Logout</a>
+
+</body>
+</html>

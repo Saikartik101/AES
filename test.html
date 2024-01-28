@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Data Table</title>
+</head>
+<body>
+  <button onclick="redirectToPage2()">Answer</button>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Test ID</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <!-- Table rows will be dynamically generated here -->
+    </tbody>
+  </table>
+
+
+  <script>
+    function redirectToPage2() {
+            window.location.href = "/start";
+        }
+    // Fetch data from your Express backend
+    fetch('/dash')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.getElementById('table-body');
+
+        // Loop through the data and create table rows
+        data.forEach(item => {
+          const row = document.createElement('tr');
+
+          // Populate the table cells with data
+          const nameCell = document.createElement('td');
+          nameCell.textContent = item.name;
+          row.appendChild(nameCell);
+
+          const descriptionCell = document.createElement('td');
+          descriptionCell.textContent = item.description;
+          row.appendChild(descriptionCell);
+
+          const testidCell = document.createElement('td');
+          testidCell.textContent = item.testid;
+          row.appendChild(testidCell);
+
+          // Create the link cell
+          const linkCell = document.createElement('td');
+          const link = document.createElement('a');
+          link.textContent = 'Link';
+          link.href = `/get/${item.testid}`; // Create the link URL based on testid
+          linkCell.appendChild(link);
+          row.appendChild(linkCell);
+
+          // Append the row to the table
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>
